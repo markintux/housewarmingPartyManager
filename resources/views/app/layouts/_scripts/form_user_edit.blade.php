@@ -1,0 +1,1 @@
+<script src="{{ asset('js/form_user_edit.js') }}"></script>

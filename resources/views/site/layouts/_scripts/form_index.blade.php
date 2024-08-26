@@ -1,0 +1,1 @@
+<script src="{{ asset('js/form_index.js') }}"></script>
