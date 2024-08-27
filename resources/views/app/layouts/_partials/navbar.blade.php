@@ -11,10 +11,8 @@
                         Guests
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="">New</a></li>
+                        <li><a class="dropdown-item" href="{{route('guests.create')}}">New</a></li>
                         <li><a class="dropdown-item" href="">View</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="">Report</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -24,8 +22,15 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="">New</a></li>
                         <li><a class="dropdown-item" href="">View</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="">Report</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Reports
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="">Confirmed Guests</a></li>
+                        <li><a class="dropdown-item" href="">Confirmed Gifts</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

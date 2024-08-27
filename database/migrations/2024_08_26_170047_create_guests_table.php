@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name', 250);
             $table->integer('number_of_guests');
-            $table->date('date');
             $table->string('code', 50)->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

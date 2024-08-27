@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\RegisterController;
@@ -13,9 +14,10 @@ Route::post('/login', [UserController::class, 'login']);
 Route::get('/login', [UserController::class, 'index'])->name('login');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('app.home');
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::get('/logout', [UserController::class, 'logout'])->name('app.logout');
-    Route::get('/home', [HomeController::class, 'index'])->name('app.home');
+    Route::resource('guests', GuestController::class);
 });
 
 Route::fallback(function(){

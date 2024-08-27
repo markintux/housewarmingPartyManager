@@ -1,0 +1,1 @@
+<script src="{{ asset('js/form_guest_create.js') }}"></script>
