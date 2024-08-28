@@ -3,7 +3,7 @@
 @section('title', 'Profile')
 
 @section('content')
-    @component('app.layouts._components.form_user_edit', ['user' => $user])
+    @component('app.layouts._components.form_user_edit', compact('user'))
     @endcomponent
 @endsection
 

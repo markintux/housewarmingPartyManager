@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GiftController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IndexController;
@@ -18,6 +19,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::get('/logout', [UserController::class, 'logout'])->name('app.logout');
     Route::resource('guests', GuestController::class);
+    Route::resource('gifts', GiftController::class);
 });
 
 Route::fallback(function(){

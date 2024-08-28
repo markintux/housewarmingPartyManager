@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Guest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,7 +14,8 @@ class GuestController extends Controller
      */
     public function index()
     {
-        //
+        $guests = Guest::where('user_id', Auth::getUser()->id)->get();
+        return view('app.guests.index', compact('guests'));
     }
 
     /**
@@ -57,7 +59,8 @@ class GuestController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $guest = Guest::findOrFail($id);
+        return view('app.guests.edit', compact('guest'));
     }
 
     /**
@@ -65,7 +68,19 @@ class GuestController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:250',
+            'number_of_guests' => 'required|int|min:1',
+        ]);
+
+        $guest = Guest::findOrFail($id);
+
+        $guest->name = $validatedData['name'];
+        $guest->number_of_guests = $validatedData['number_of_guests'];
+        
+        $guest->save();
+
+        return response()->json(['message' => 'Guest updated successfully', 200]);
     }
 
     /**
@@ -73,7 +88,9 @@ class GuestController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $guest = Guest::findOrFail($id);
+        $guest->delete();
+        return redirect()->route('guests.index')->with('success', 'Guest deleted successfully.');
     }
 
     /**
