@@ -20,8 +20,8 @@
                         Gifts
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="">New</a></li>
-                        <li><a class="dropdown-item" href="">View</a></li>
+                        <li><a class="dropdown-item" href="{{route('gifts.create')}}">New</a></li>
+                        <li><a class="dropdown-item" href="{{route('gifts.index')}}">View</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">

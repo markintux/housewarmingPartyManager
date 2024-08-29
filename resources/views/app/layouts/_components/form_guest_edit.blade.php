@@ -28,7 +28,7 @@
                         <input type="number" class="form-control form-control" id="number_of_guests" name="number_of_guests" placeholder="" value="{{$guest->number_of_guests}}">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Update</button>
+                <button type="submit" class="btn btn-primary w-100">Save Changes</button>
                 <input type="hidden" id="guest_id" name="guest_id" value="{{ $guest->id }}">
             </form>
             <div id="resultMessage" class="mt-3"></div>
