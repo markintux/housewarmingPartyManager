@@ -49,7 +49,7 @@ class GiftController extends Controller
 
         $gift->save();
 
-        return response()->json(['success' => 'Gift registered successfully!']);
+        return response()->json(['message' => 'Gift registered successfully!']);
     }
 
     /**
@@ -81,24 +81,23 @@ class GiftController extends Controller
             'gift_image' => 'nullable|image|mimes:jpg,jpeg,png,gif,svg|max:2048',
         ]);
 
-        $imagePath = 'public/' . $gift->gift_image;
+        $gift->gift = $validatedData['gift'];
 
-        if($gift->gift_image && Storage::exists($imagePath)) {
+        if ($request->hasFile('gift_image')) {
             
-            Storage::delete($imagePath);
-            
-            // Salva a nova imagem
-            $imageName = $request->file('gift_image')->store('gifts', 'public');
-            $validatedData['gift_image'] = basename($imageName);
+            if ($gift->gift_image && Storage::exists('public/' . $gift->gift_image)) {
+                Storage::delete('public/' . $gift->gift_image);
+            }
 
-            // $imageName = time().'_'.$request->file('gift_image')->getClientOriginalName();
-            // $path = $request->file('gift_image')->storeAs('gifts', $imageName, 'public');
-            // $gift->gift_image = $path;
+            $imageName = time().'_'.$request->file('gift_image')->getClientOriginalName();
+            $path = $request->file('gift_image')->storeAs('gifts', $imageName, 'public');
+            $gift->gift_image = $path;
+
         }
 
-        $gift->update($validatedData);
+        $gift->save();
 
-        return response()->json(['success' => 'Gift updated successfully!']);
+        return response()->json(['message' => 'Gift updated successfully!']);
     }
 
     /**

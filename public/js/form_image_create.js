@@ -1,26 +1,23 @@
-$(document).ready(function() {
-
-    $('#editGiftForm').on('submit', function(e) {
+$(document).ready(function(){
+    $('#createImageForm').on('submit', function(e){
         e.preventDefault();
 
         let formData = new FormData(this);
-        var giftId = $('#gift_id').val();
-        var url = "/gifts/" + giftId;
 
         $.ajax({
+            url: '/images',
             type: 'POST',
-            url: url,
             data: formData,
             contentType: false,
             processData: false,
-            success: function(response) {
-                $('#resultMessage').html('<div class="alert alert-success">' + response.message + '</div>');
+            success: function(response){
+                $('#resultMessage').html('<div class="alert alert-success">'+response.message+'</div>');
                 setTimeout(function() {
-                    window.location.href = '/gifts';
+                    window.location.reload();
                 }, 2000);
             },
-            error: function(xhr) {
-                $('#resultMessage').html('<div class="alert alert-danger">Error saving gift!</div>');
+            error: function(response){
+                $('#resultMessage').html('<div class="alert alert-danger">Error saving image!</div>');
                 var errors = xhr.responseJSON.errors;
                 var errorHtml = '<div class="alert alert-danger">';
                 $.each(errors, function (key, error) {

@@ -1,0 +1,1 @@
+<script src="{{ asset('js/form_image_edit.js') }}"></script>

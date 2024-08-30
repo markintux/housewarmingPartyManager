@@ -3,6 +3,7 @@
 use App\Http\Controllers\GiftController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
@@ -20,6 +21,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [UserController::class, 'logout'])->name('app.logout');
     Route::resource('guests', GuestController::class);
     Route::resource('gifts', GiftController::class);
+    Route::resource('images', ImageController::class);
 });
 
 Route::fallback(function(){
