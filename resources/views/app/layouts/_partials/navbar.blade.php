@@ -50,6 +50,7 @@
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{ route('users.edit', ['user' => Auth::getUser()->id]) }}">Profile</a></li>
+                        <li><a class="dropdown-item" target="_blank" href="{{ route('gifts.list', ['user_code' => Auth::getUser()->code]) }}">My List</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="{{ route('app.logout') }}">Logout</a></li>
                     </ul>

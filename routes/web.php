@@ -14,6 +14,8 @@ Route::get('/register', [RegisterController::class, 'index'])->name('site.regist
 Route::resource('users', UserController::class);
 Route::post('/login', [UserController::class, 'login']);
 Route::get('/login', [UserController::class, 'index'])->name('login');
+Route::get('/gifts/list/{user_code?}', [GiftController::class, 'giftsWithoutGuestByCode'])->name('gifts.list');
+Route::post('/gifts/choose', [GiftController::class, 'chooseGifts'])->name('gifts.choose');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('app.home');
