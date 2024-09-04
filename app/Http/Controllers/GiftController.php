@@ -154,27 +154,42 @@ class GiftController extends Controller
             'selected_gifts' => 'required|array'
         ]);
 
-        // $guestCode = $validatedData['guest_code'];
-        // $selectedGifts = $validatedData['selected_gifts'];
+        $guestCode = $validatedData['guest_code'];
+        $selectedGifts = $validatedData['selected_gifts'];
 
-        // $guest = Guest::where('code', $guestCode)->first();
+        $guest = Guest::where('code', $guestCode)->first();
 
-        // if(!$guest){
-        //     return response()->json(['message' => 'Guest code not found.'], 404);
-        // }
+        if(!$guest){
+            return response()->json(['message' => 'Guest code not found.'], 404);
+        }
 
-        // $guestId = $guest->id;
+        $guestId = $guest->id;
 
-        // foreach($selectedGifts as $id){
-        //     $gift = Gift::find($id);
+        foreach($selectedGifts as $id){
+            $gift = Gift::find($id);
+            if($gift){
+                $gift->guest_id = $guestId;
+                $gift->save();
+            }
+        }
 
-        //     if($gift){
-        //         $gift->guest_id = $guestId;
-        //         $gift->save();
-        //     }
-        // }
+        return response()->json(['message' => 'Gifts selected successfully!'], 200);
+    }
 
-        // return response()->json(['message' => 'Gifts selected successfully!'], 200);
+    /**
+     * Returns guests' gifts using the code
+     */
+    public function rememberGifts($guest_code)
+    {
+        $guest = Guest::where('code', $guest_code)->first();
+
+        if(!$guest){
+            return response()->json(['message' => 'Invalid guest code.'], 404);
+        }
+
+        $gifts = Gift::where('guest_id', $guest->id)->get();
+
+        return response()->json(['gifts' => $gifts, 'guest' => $guest]);
     }
 
 }

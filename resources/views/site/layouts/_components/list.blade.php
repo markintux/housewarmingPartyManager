@@ -24,7 +24,7 @@
         </button>
     </div>
 @endif
-<form id="giftsForm" action="{{ route('gifts.choose') }}" method="POST">
+<form id="giftsForm">
     @csrf
     <div class="row mt-3 mb-5">
         <div class="col">
@@ -72,24 +72,43 @@
                         <button id="submitSelection" type="submit" class="btn btn-success">Select Gifts</button>
                     </div>
                 </div>
-                <div id="resultMessage" class="alert d-none"></div>
+                <div id="resultMessage" class="alert d-none mt-3"></div>
             @endif
         </div>
     </div>
 </form>
 <div class="row mb-5 pb-5">
     <div class="col-auto">
-        <h1><strong>I forgot the gifts I chose...</strong></h1>
+        <h3><strong>I forgot the gifts I chose...</strong></h3>
         <p>No problem! If you forgot the gifts you chose, enter your code in the field below and click "Remember Gifts". Simple, quick and easy!</p>
-        <div class="row g-2 align-items-center">
-            <div class="col-auto">
-              <label class="col-form-label">Enter with your code:</label>
+        <form id="rememberGiftsForm">
+            @csrf
+            <div class="row g-2 align-items-center">
+                <div class="col-auto">
+                <label class="col-form-label">Enter with your code:</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" id="guest_code_remember" name="guest_code_remember" class="form-control" placeholder="Your code here...">
+                </div>
+                <div class="col-auto">
+                    <button id="submitRemember" type="submit" class="btn btn-primary">Remember Gifts</button>
+                </div>
             </div>
-            <div class="col-auto">
-                <input type="text" id="guestCodeRemember" name="code" class="form-control" placeholder="Your code here...">
+            <div id="resultMessageRemember" class="alert d-none mt-3"></div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="giftsModal" tabindex="-1" aria-labelledby="giftsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="giftsModalLabel">Selected Gifts</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="col-auto">
-                <button id="submitRemember" type="submit" class="btn btn-primary">Remember Gifts</button>
+            <div class="modal-body" id="giftsList"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
