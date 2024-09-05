@@ -16,4 +16,9 @@ class Guest extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function gifts()
+    {
+        return $this->hasMany(Gift::class);
+    }
+
 }

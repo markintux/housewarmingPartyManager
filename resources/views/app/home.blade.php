@@ -1,13 +1,15 @@
 @extends('app.layouts.template')
 
-@section('title', 'Área Administrativa')
+@section('title', 'Admin Area')
 
-{{-- @section('content')
-    @component('')
+@section('content')
+    @component('app.layouts._components.home', compact(
+        'totalGifts', 
+        'totalGuests', 
+        'confirmedGuests', 
+        'totalConfirmedGifts',
+        'percentGuestsConfirmed',
+        'percentGiftsSelected'
+        ))
     @endcomponent
-@endsection --}}
-
-{{-- @section('scripts')
-    @component('')
-    @endcomponent
-@endsection --}}
+@endsection

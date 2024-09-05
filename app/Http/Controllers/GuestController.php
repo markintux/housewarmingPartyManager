@@ -108,4 +108,28 @@ class GuestController extends Controller
 
         return $uniqueCode;
     }
+
+    /**
+     * Show the guests that have at least one gift selected and the total number of guests
+     */
+    public function confirmedGuests()
+    {
+        $userId = Auth::id();
+
+        $guests = Guest::where('user_id', $userId)
+            ->whereHas('gifts', function($query) {
+                $query->whereNotNull('guest_id');
+            })
+            ->with('gifts')
+            ->get();
+
+        $totalConfirmedGuests = $guests->sum('number_of_guests');
+
+        $totalGifts = $guests->reduce(function ($carry, $guest) {
+            return $carry + $guest->gifts->count();
+        }, 0);
+
+        return view('app.guests.confirmed', compact('guests', 'totalConfirmedGuests', 'totalGifts'));
+    }
+
 }
