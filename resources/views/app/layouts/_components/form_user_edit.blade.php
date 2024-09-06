@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <input type="hidden" id="user_id" name="user_id" value="{{ $user->id }}">
-                    <button type="submit" class="btn btn-primary w-100">Update</button>
+                    <button type="submit" class="btn btn-primary w-100">Save Changes</button>
                 </form>
                 <div id="resultMessage" class="mt-3"></div>
             </div>

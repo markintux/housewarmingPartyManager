@@ -7,8 +7,15 @@ $(document).ready(function() {
             type: 'POST',
             data: $(this).serialize(),
             success: function (response) {
-                $('#resultMessage').html('<div class="alert alert-success">' + response.message + '</div>');
-                $('#registerForm')[0].reset();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: response.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then((result) => {
+                    window.location.href = '/';
+                });
             },
             error: function (xhr) {
                 $('#resultMessage').html('<div class="alert alert-danger">Error saving user!</div>');
@@ -16,7 +23,7 @@ $(document).ready(function() {
                 var errors = xhr.responseJSON.errors;
                 var errorHtml = '<div class="alert alert-danger">';
                 $.each(errors, function (key, error) {
-                    errorHtml += '<p>' + error[0] + '</p>';
+                    errorHtml += error[0];
                 });
                 errorHtml += '</div>';
                 $('#resultMessage').html(errorHtml);

@@ -12,10 +12,15 @@ $(document).ready(function() {
             contentType: false,
             processData: false,
             success: function(response) {
-                $('#resultMessage').removeClass('d-none alert-danger').addClass('alert-success').text('Thank you! Your selection was successful!');
-                setTimeout(function() {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: 'Thank you! Your selection was successful!',
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then((result) => {
                     window.location.reload();
-                }, 2000);
+                });
             },
             error: function(xhr) {
                 let errorMsg = xhr.responseJSON?.message || 'An error occurred, please try again.';

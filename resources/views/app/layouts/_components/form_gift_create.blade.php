@@ -26,7 +26,7 @@
                         <input type="file" class="form-control" id="gift_image" name="gift_image">
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary w-100">Create</button>
+                <button type="submit" class="btn btn-primary w-100">Save</button>
                 <input type="hidden" id="user_id" name="user_id" value="{{ Auth::getUser()->id }}">
             </form>
             <div id="resultMessage" class="mt-3"></div>

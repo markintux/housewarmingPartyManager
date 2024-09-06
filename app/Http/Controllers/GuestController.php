@@ -43,7 +43,7 @@ class GuestController extends Controller
             'code' => $this->generateUniqueCode()
         ]);
     
-        return response()->json(['message' => 'User created successfully!'], 200);
+        return response()->json(['message' => 'Guest created successfully!'], 200);
     }
 
     /**
